@@ -107,7 +107,7 @@ let questions = [
     id: 5,
     isAnswered: false,
     type: 'M',
-    question: 'Quem é a esposa do rapper Jay-Z??',
+    question: 'Quem é a esposa do rapper Jay-Z?',
     options: [
       {
         text: 'Shakira',
@@ -1399,7 +1399,7 @@ let questions = [
     id: 57,
     isAnswered: false,
     type: 'E',
-    question: 'Qual canal aaixo não é esportivo?',
+    question: 'Qual canal abaixo não é esportivo?',
     options: [
       {
         text: 'ESPN',
