@@ -135,9 +135,6 @@ export default class App extends Component {
           pergunta={this.state.currentQuestion}
           number={this.state.count + 1}
         />
-        <Text>Easy: {this.state.easyCount}</Text>
-        <Text>Medium: {this.state.mediumCount}</Text>
-        <Text>Hard: {this.state.hardCount}</Text>
       </View>
     );
   }
