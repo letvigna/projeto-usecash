@@ -35,6 +35,18 @@ export default class App extends Component {
     });
   }
 
+  incrementPoints(amount) {
+    this.setState({
+      points: this.state.points + amount
+    });
+  }
+
+  incrementCount() {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }
+
   getRandomQuestion() {
     do {
       index = Math.floor(Math.random() * questions.length);
@@ -49,7 +61,6 @@ export default class App extends Component {
         index = Math.floor(Math.random() * questions.length);
       } while (questions[index].type != type);
     } while (questions[index].isAnswered);
-
     return questions[index];
   }
 
@@ -94,7 +105,6 @@ export default class App extends Component {
   handleAnswerPress(pressed) {
     if (this.state.count < 19) {
       this.incrementCount();
-
       if (pressed.isCorrect) {
         switch (this.state.currentQuestion.type) {
           case 'E':
@@ -108,7 +118,6 @@ export default class App extends Component {
             break;
         }
       }
-
       // Próxima pergunta
       this.setState({
         currentQuestion: this.getQuestion()
@@ -116,18 +125,6 @@ export default class App extends Component {
     } else {
       this.props.navigation.navigate("EndScreen", { points: this.state.points })
     }
-  }
-
-  incrementPoints(amount) {
-    this.setState({
-      points: this.state.points + amount
-    });
-  }
-
-  incrementCount() {
-    this.setState({
-      count: this.state.count + 1
-    });
   }
 
   render() {
