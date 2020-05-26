@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import Pergunta from '../components/Pergunta';
 import styles from '../services/styles';
@@ -10,21 +10,36 @@ export default class App extends Component {
     super();
     this.state = {
       count: 0,
+      easyCount: 0,
+      mediumCount: 0,
+      hardCount: 0,
       points: 0,
       currentQuestion: questions[0]
     };
   }
 
   componentDidMount() {
-    this.setState({ currentQuestion: this.getQuestion() });
+    this.setState({
+      currentQuestion: this.getQuestion()
+    });
 
-    this.props.navigation.addListener('focus', () => {
+    this.props.navigation.addListener('blur', () => {
       this.setState({
         count: 0,
+        easyCount: 0,
+        mediumCount: 0,
+        hardCount: 0,
         points: 0,
         currentQuestion: this.getQuestion()
       });
     });
+  }
+
+  getRandomQuestion() {
+    do {
+      index = Math.floor(Math.random() * questions.length);
+    } while (questions[index].isAnswered);
+    return questions[index];
   }
 
   getTypeQuestion(type) {
@@ -37,22 +52,39 @@ export default class App extends Component {
 
   getQuestion() {
     let question;
-    do {
-      // 6 fáceis (1-6)
-      if (this.state.count < 5) {
+    // Pegar aleatoriamente até Pergunta #6
+    if (this.state.count < 5) {
+      question = this.getRandomQuestion()
+      switch (question.type) {
+        case 'E':
+          this.setState({ easyCount: this.state.easyCount + 1 });
+          break;
+        case 'M':
+          this.setState({ mediumCount: this.state.mediumCount + 1 });
+          break;
+        case 'H':
+          this.setState({ hardCount: this.state.hardCount + 1 });
+          break;
+      }
+    }
+    // "Completar" com as dificuldades que faltam (em ordem E -> M -> H)
+    else {
+      if (this.state.easyCount < 5) {
         question = this.getTypeQuestion('E');
-      }
-      // 7 médias (7-13)
-      else if (this.state.count >= 5 && this.state.count < 12) {
+        this.setState({ easyCount: this.state.easyCount + 1 });
+      } else if (this.state.mediumCount < 5) {
         question = this.getTypeQuestion('M');
-      }
-      // 7 difíceis (14-20)
-      else {
+        this.setState({ mediumCount: this.state.mediumCount + 1 });
+      } else if (this.state.hardCount < 5) {
         question = this.getTypeQuestion('H');
+        this.setState({ hardCount: this.state.hardCount + 1 });
       }
-    } while (question.isAnswered);
+      // Se não houver nenhuma dificuldade com menos do que 5, pegar aleatoriamente
+      else {
+        question = this.getRandomQuestion();
+      }
+    }
     question.isAnswered = true;
-
     return question;
   }
 
@@ -103,6 +135,9 @@ export default class App extends Component {
           pergunta={this.state.currentQuestion}
           number={this.state.count + 1}
         />
+        <Text>Easy: {this.state.easyCount}</Text>
+        <Text>Medium: {this.state.mediumCount}</Text>
+        <Text>Hard: {this.state.hardCount}</Text>
       </View>
     );
   }
