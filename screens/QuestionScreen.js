@@ -8,7 +8,6 @@ import questions from '../services/questions';
 export default class App extends Component {
   constructor() {
     super();
-    
     this.state = {
       count: 0,
       points: 0,
@@ -18,16 +17,23 @@ export default class App extends Component {
 
   componentDidMount() {
     this.setState({ currentQuestion: this.getQuestion() });
+
+    // Na saída de foco, reinicar os estados
+    this.props.navigation.addListener('blur', () => {
+      this.setState({
+        count: 0,
+        points: 0,
+        currentQuestion: this.getQuestion()
+      });
+    });
   }
 
   getQuestion() {
     let index;
-    if (this.state.count < 20) {
-      do {
-        index = Math.floor(Math.random() * questions.length);
-      } while (questions[index].isAnswered);
-      questions[index].isAnswered = true;
-    }
+    do {
+      index = Math.floor(Math.random() * questions.length);
+    } while (questions[index].isAnswered);
+    questions[index].isAnswered = true;
     return questions[index];
   }
 
@@ -54,8 +60,6 @@ export default class App extends Component {
         currentQuestion: this.getQuestion()
       });
     } else {
-      console.log("FIM :D")
-      console.log(this.state.points)
       this.props.navigation.navigate("EndScreen", { points: this.state.points })
     }
   }
@@ -75,9 +79,6 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Points: {this.state.points}</Text>
-        <Text>Count: {this.state.count}</Text>
-
         <Pergunta
           handler={this.handleAnswerPress.bind(this)}
           pergunta={this.state.currentQuestion}
