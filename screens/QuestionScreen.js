@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import Pergunta from '../components/Pergunta';
 import styles from '../services/styles';
@@ -18,8 +18,7 @@ export default class App extends Component {
   componentDidMount() {
     this.setState({ currentQuestion: this.getQuestion() });
 
-    // Na saída de foco, reinicar os estados
-    this.props.navigation.addListener('blur', () => {
+    this.props.navigation.addListener('focus', () => {
       this.setState({
         count: 0,
         points: 0,
@@ -28,13 +27,33 @@ export default class App extends Component {
     });
   }
 
-  getQuestion() {
+  getTypeQuestion(type) {
     let index;
     do {
       index = Math.floor(Math.random() * questions.length);
-    } while (questions[index].isAnswered);
-    questions[index].isAnswered = true;
+    } while (questions[index].type != type);
     return questions[index];
+  }
+
+  getQuestion() {
+    let question;
+    do {
+      // 6 fáceis (1-6)
+      if (this.state.count < 5) {
+        question = this.getTypeQuestion('E');
+      }
+      // 7 médias (7-13)
+      else if (this.state.count >= 5 && this.state.count < 12) {
+        question = this.getTypeQuestion('M');
+      }
+      // 7 difíceis (14-20)
+      else {
+        question = this.getTypeQuestion('H');
+      }
+    } while (question.isAnswered);
+    question.isAnswered = true;
+
+    return question;
   }
 
   handleAnswerPress(pressed) {
