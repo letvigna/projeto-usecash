@@ -4,12 +4,14 @@
 Para rodar este projeto localmente, deve-se:
 
 1. Ter uma instalação de [Node.js](https://nodejs.org/en/download/)
+
 Após instalado, você pode verificar a versão com:
 ```
 node --version
 ```
 
 2. Ter uma instalação do [Expo CLI](https://docs.expo.io/workflow/expo-cli/#installation)
+
 Após instalado, você pode verificar a versão com:
 ```
 expo --version
