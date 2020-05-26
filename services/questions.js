@@ -1,8 +1,8 @@
 /*
   Easy    ->  20
   Medium  ->  20
-  Hard    ->  24
-  Total       64
+  Hard    ->  23
+  Total       63
 */
 
 let questions = [
@@ -423,24 +423,23 @@ let questions = [
   {
     id: 18,
     isAnswered: false,
-    type: 'H',
-    question:
-      'Em que ano ocorreu a aprovação da Lei Áurea que oficializou o fim da escravidão no Brasil?',
+    type: 'E',
+    question: 'Qual o valor aproximado de Pi (π)?',
     options: [
       {
-        text: '1807',
-        isCorrect: false,
-      },
-      {
-        text: '1810',
-        isCorrect: false,
-      },
-      {
-        text: '1888',
+        text: '3,14',
         isCorrect: true,
       },
       {
-        text: '1892',
+        text: '3,15',
+        isCorrect: false,
+      },
+      {
+        text: '3,20',
+        isCorrect: false,
+      },
+      {
+        text: '3,25',
         isCorrect: false,
       },
     ],
@@ -768,7 +767,7 @@ let questions = [
     isAnswered: false,
     type: 'E',
     question:
-      'Qual categoria de trabalhadores que parou o Brasil com uam greve em Maio de 2018?',
+      'Qual categoria de trabalhadores que parou o Brasil com uma greve em Maio de 2018?',
     options: [
       {
         text: 'Seringueiros',
@@ -1536,30 +1535,6 @@ let questions = [
       },
       {
         text: 'Galáxia do Rodamoinho',
-        isCorrect: false,
-      },
-    ],
-  },
-  {
-    id: 63,
-    isAnswered: false,
-    type: 'E',
-    question: 'Qual o valor aproximado de Pi (π)?',
-    options: [
-      {
-        text: '3,14',
-        isCorrect: true,
-      },
-      {
-        text: '3,15',
-        isCorrect: false,
-      },
-      {
-        text: '3,20',
-        isCorrect: false,
-      },
-      {
-        text: '3,25',
         isCorrect: false,
       },
     ],
