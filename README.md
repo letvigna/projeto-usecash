@@ -1,11 +1,33 @@
-# Sample Snack app
+# usecash-app
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by clicking the **Run** button or use the simulator by clicking **Tap to Play**. When you're done, click **Save** and share the link!
+## Instruções
+Para rodar este projeto localmente, deve-se:
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Export** your project and use it with [expo-cli](https://docs.expo.io/versions/latest/introduction/installation.html).
+1. Ter uma instalação de [Node.js](https://nodejs.org/en/download/)
+Após instalado, você pode verificar a versão com:
+```
+node --version
+```
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the **Embed** button.
+2. Ter uma instalação do [Expo CLI](https://docs.expo.io/workflow/expo-cli/#installation)
+Após instalado, você pode verificar a versão com:
+```
+expo --version
+```
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io).
+3. Clonar este repositório
 
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack-web).
+4. Com o repositório clonado, realizar a instalação das dependências **dentro da pasta do projeto**
+```
+npm install
+```
+
+5. Rodar o projeto através do Expo
+```
+expo start
+```
+O Expo abrirá uma nova aba em seu navegador padrão com um código QR para ser lido através do aplicativo.
+
+6. Baixar o aplicativo ["Expo Client"](https://expo.io/tools) no seu celular
+
+Com o aplicativo baixado, basta o celular estar na mesma rede que a máquina executando o projeto para utilizar a conexão LAN para rodar o aplicativo. Por conta de Firewall e alguns antivírus, o LAN talvez não funcione. Para esses casos, recomendo trocar o tipo de conexão para "Tunnel" e tentar através dele.
