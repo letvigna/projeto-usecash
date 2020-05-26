@@ -1,7 +1,7 @@
 /*
-  Easy    ->  20
-  Medium  ->  20
-  Hard    ->  23
+  Easy    ->  21
+  Medium  ->  21
+  Hard    ->  21
   Total       63
 */
 
@@ -227,7 +227,7 @@ let questions = [
   {
     id: 10,
     isAnswered: false,
-    type: 'H',
+    type: 'M',
     question:
       'Quem é o autor da famosa composição clássica de 1896, Für Elise?',
     options: [
@@ -718,7 +718,7 @@ let questions = [
     isAnswered: false,
     type: 'H',
     question:
-      "Qual o nome da raça de cachorro popularmente conhecida como 'cachorro salsicha'?",
+      'Qual o nome da raça de cachorro popularmente conhecida como "cachorro salsicha"?',
     options: [
       {
         text: 'Dobermann',
@@ -816,7 +816,7 @@ let questions = [
     isAnswered: false,
     type: 'M',
     question:
-      "Qual o nome das duas personagens principais do filme infantil 'Frozen'?",
+      'Qual o nome das duas personagens principais do filme infantil "Frozen"?',
     options: [
       {
         text: 'Elsa e Ariel',
@@ -864,7 +864,7 @@ let questions = [
   {
     id: 36,
     isAnswered: false,
-    type: 'H',
+    type: 'E',
     question:
       'Quais os dois consagrados jornalistas que faleceram no ano de 2019?',
     options: [
@@ -1254,7 +1254,7 @@ let questions = [
     id: 52,
     isAnswered: false,
     type: 'E',
-    question: "Quem é o artista denomidado como 'rei do pop?'",
+    question: 'Quem é o artista denomidado como "rei do pop?"',
     options: [
       {
         text: 'Michael Jackson',
@@ -1395,30 +1395,6 @@ let questions = [
     ],
   },
   {
-    id: 57,
-    isAnswered: false,
-    type: 'E',
-    question: 'Qual canal abaixo não é esportivo?',
-    options: [
-      {
-        text: 'ESPN',
-        isCorrect: false,
-      },
-      {
-        text: 'SporTV',
-        isCorrect: false,
-      },
-      {
-        text: 'GNT',
-        isCorrect: true,
-      },
-      {
-        text: 'FOX Sports',
-        isCorrect: false,
-      },
-    ],
-  },
-  {
     id: 58,
     isAnswered: false,
     type: 'H',
@@ -1446,7 +1422,7 @@ let questions = [
     id: 59,
     isAnswered: false,
     type: 'H',
-    question: "Quem é o autor por trás da famosa pintura 'O Grito'?",
+    question: 'Quem é o autor por trás da famosa pintura "O Grito"?',
     options: [
       {
         text: 'Edvard Munch',
@@ -1535,6 +1511,30 @@ let questions = [
       },
       {
         text: 'Galáxia do Rodamoinho',
+        isCorrect: false,
+      },
+    ],
+  },
+  {
+    id: 63,
+    isAnswered: false,
+    type: 'E',
+    question: 'Que dia marca o nascimento de Jesus para os cristãos?',
+    options: [
+      {
+        text: '14 de Fevereiro',
+        isCorrect: false,
+      },
+      {
+        text: '8 de Março',
+        isCorrect: true,
+      },
+      {
+        text: '29 de Abril',
+        isCorrect: false,
+      },
+      {
+        text: '25 de Dezembro',
         isCorrect: false,
       },
     ],
