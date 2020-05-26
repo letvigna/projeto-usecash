@@ -1,4 +1,5 @@
 import React, { useState, useReducer } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View } from 'react-native';
 
 import Pergunta from '../components/Pergunta';
@@ -13,6 +14,8 @@ export default function Perguntas({ navigation }) {
         return { count: state.count, points: state.points + action.value };
       case 'incrementCount':
         return { count: state.count + 1, points: state.points };
+      case 'reset':
+        return { count: 0, points: 0 };
       default:
         throw new Error();
     }
@@ -31,6 +34,14 @@ export default function Perguntas({ navigation }) {
 
   const [state, dispatch] = useReducer(reducer, { count: 0, points: 0 });
   const [currentQuestion, setCurrentQuestion] = useState(getQuestion());
+
+  // Quando a tela de Perguntas estiver em foco
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch({ type: 'reset' });
+      setCurrentQuestion(getQuestion());
+    }, [])
+  );
 
   const updatePoints = (add) => {
     dispatch({ type: 'incrementPoints', value: add });
