@@ -48,6 +48,7 @@ export default class App extends Component {
   }
 
   getRandomQuestion() {
+    let index;
     do {
       index = Math.floor(Math.random() * questions.length);
     } while (questions[index].isAnswered);
