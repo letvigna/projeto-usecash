@@ -32,9 +32,9 @@ export default class App extends Component {
   }
 
   handleAnswerPress(pressed) {
-    this.incrementCount();
-
     if (this.state.count < 19) {
+      this.incrementCount();
+
       if (pressed.isCorrect) {
         switch (this.state.currentQuestion.type) {
           case 'E':
@@ -56,7 +56,7 @@ export default class App extends Component {
     } else {
       console.log("FIM :D")
       console.log(this.state.points)
-      //this.props.navigation.navigate("EndScreen", { points: this.state.points })
+      this.props.navigation.navigate("EndScreen", { points: this.state.points })
     }
   }
 
