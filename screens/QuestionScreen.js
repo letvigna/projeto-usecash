@@ -45,8 +45,11 @@ export default class App extends Component {
   getTypeQuestion(type) {
     let index;
     do {
-      index = Math.floor(Math.random() * questions.length);
-    } while (questions[index].type != type);
+      do {
+        index = Math.floor(Math.random() * questions.length);
+      } while (questions[index].type != type);
+    } while (questions[index].isAnswered);
+
     return questions[index];
   }
 
