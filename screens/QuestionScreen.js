@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { View } from 'react-native';
 
 import Pergunta from '../components/Pergunta';
 import styles from '../services/styles';
 import questions from '../services/questions';
 
-export default function Perguntas({navigation}) {
-  const [points, setPoints] = useState(0);
-  const [count, setCount] = useState(0);
-
-  const updatePoints = (add) => {
-    setPoints(points + add);
-    console.log(points);
+export default function Perguntas({ navigation }) {
+  function reducer(state, action) {
+    console.log(state);
+    switch (action.type) {
+      case 'incrementPoints':
+        return { count: state.count, points: state.points + action.value };
+      case 'incrementCount':
+        return { count: state.count + 1, points: state.points };
+      default:
+        throw new Error();
+    }
   }
 
   const getQuestion = () => {
     let index;
-    if (count < 20) {
+    if (state.count < 20) {
       do {
         index = Math.floor(Math.random() * questions.length);
       } while (questions[index].isAnswered);
@@ -25,12 +29,18 @@ export default function Perguntas({navigation}) {
     return questions[index];
   };
 
+  const [state, dispatch] = useReducer(reducer, { count: 0, points: 0 });
   const [currentQuestion, setCurrentQuestion] = useState(getQuestion());
 
-  const handleOnPress = (pressed, difficulty) => {
-    setCount(count + 1);
+  const updatePoints = (add) => {
+    dispatch({ type: 'incrementPoints', value: add });
+  }
 
-    if (count < 19) {
+  const handleOnPress = (pressed, difficulty) => {
+    dispatch({ type: 'incrementCount' });
+    console.log("incrementCount dispatch ", state.count)
+
+    if (state.count < 19) {
       if (pressed.isCorrect) {
         switch (difficulty) {
           case 'E':
@@ -47,9 +57,8 @@ export default function Perguntas({navigation}) {
       setCurrentQuestion(getQuestion());
     }
     else {
-      navigation.navigate("EndScreen", {points: points});
+      navigation.navigate("EndScreen", { points: state.points });
     }
-    console.log(count);
   };
 
   return (
@@ -57,7 +66,7 @@ export default function Perguntas({navigation}) {
       <Pergunta
         handler={handleOnPress}
         pergunta={currentQuestion}
-        number={count+1}
+        number={state.count + 1}
       />
     </View>
   );
